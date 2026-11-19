@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TikTok sign-in</title><style>body{font:16px/1.6 system-ui,sans-serif;max-width:680px;margin:40px auto;padding:0 16px;color:#222;background:#fff}code{background:#f3f3f3;padding:2px 6px;border-radius:4px;word-break:break-all}button{font:inherit;padding:6px 14px}</style></head><body><h1>TikTok sign-in</h1>
+<p id="msg">Reading the sign-in result...</p><p><code id="code"></code></p><p><button id="copy" hidden>Copy code</button></p>
+<p>Paste this code into the yt-studio terminal prompt. The code works once and expires in a few minutes. This page sends nothing anywhere; it only shows what TikTok put in the address bar.</p>
+<script>
+const q = new URLSearchParams(location.search), code = q.get('code'), err = q.get('error');
+const msg = document.getElementById('msg'), box = document.getElementById('code'), btn = document.getElementById('copy');
+if (code) { msg.textContent = 'Signed in. Your one-time code:'; box.textContent = code; btn.hidden = false;
+  btn.onclick = () => navigator.clipboard.writeText(code).then(() => btn.textContent = 'Copied'); }
+else { msg.textContent = err ? 'TikTok returned an error: ' + err + ' ' + (q.get('error_description') || '') : 'No code in the address. Start the sign-in again from yt-studio.'; }
+</script><p><a href="index.html">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p></body></html>
